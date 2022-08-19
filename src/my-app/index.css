@@ -47,6 +47,8 @@ body {
     display: flex;
     vertical-align:top;
     font-size:13px;
+    left :190px;
+    top:80px;
   }
   
   .square:focus {
@@ -66,22 +68,32 @@ body {
   }
   
   .title{
+    background: #fff;
+    border: 8px solid rgb(241, 118, 118);
+    width: 280px;
+    position: relative;
     font-size:50px;
-    padding-left: 340px;
+    left: 320px;
+    top: 150px;
+    text-align: center;
   }
 
   .mae{
+    background: #fff;
+    border: 1px solid #999;
     position: relative;
     left: 200px;
-    top: 230px;
+    top: 235px;
     width: 100px;
     height: 80px;
   }
 
   .tugi{
+    background: #fff;
+    border: 1px solid #999;
     position:relative;
     left: 620px;
-    top: 70px;
+    top: 65px;
     width: 100px;
     height: 80px;
   }
