@@ -1,32 +1,16 @@
 import { useState } from "react";
 import Board from "~/my-app/Board/Board";
 import "./index.css";
-import { Repeat } from "typescript-tuple";
-import React from "react";
-
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-  Button,
-  Portal,
-  ChakraProvider,
-} from "@chakra-ui/react";
+import type { Repeat } from "typescript-tuple";
 
 type SquareState =
-  | "月"
-  | "火"
-  | "水"
-  | "木"
-  | "金"
-  | "土"
-  | "日"
+  | "月曜日"
+  | "火曜日"
+  | "水曜日"
+  | "木曜日"
+  | "金曜日"
+  | "土曜日"
+  | "日曜日"
   | number
   | null;
 
@@ -60,6 +44,8 @@ let onetime = -1;
 let endweek = startDayOfWeek;
 let ii = 0;
 let now_day = 0;
+let start_day =0;
+let end_day = 0;
 
 const today_year = hiduke.getFullYear();
 const today_month = hiduke.getMonth() + 1;
@@ -71,13 +57,13 @@ const Game = () => {
     history: [
       {
         squares: [
-          "日",
-          "月",
-          "火",
-          "水",
-          "木",
-          "金",
-          "土",
+          "日曜日",
+          "月曜日",
+          "火曜日",
+          "水曜日",
+          "木曜日",
+          "金曜日",
+          "土曜日",
           null,
           null,
           null,
@@ -140,7 +126,7 @@ const Game = () => {
         if (endweek > 6) {
           endweek = 0;
         }
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = daycount;
           return {
@@ -149,6 +135,8 @@ const Game = () => {
         })(current);
       }
       onetime = 1;
+      start_day = 7;
+      end_day = endDate+6
     } else if (startDayOfWeek === 1 && onetime === 0) {
       for (let i = 8; i < endDate + 8; i++) {
         daycount = Number(daycount) + 1;
@@ -156,7 +144,7 @@ const Game = () => {
         if (endweek > 6) {
           endweek = 0;
         }
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = daycount;
           return {
@@ -168,6 +156,8 @@ const Game = () => {
         }
       }
       onetime = 1;
+      start_day = 8;
+      end_day = endDate+7
     } else if (startDayOfWeek === 2 && onetime === 0) {
       for (let i = 9; i < endDate + 9; i++) {
         daycount = Number(daycount) + 1;
@@ -175,7 +165,7 @@ const Game = () => {
         if (endweek > 6) {
           endweek = 0;
         }
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = daycount;
           return {
@@ -187,6 +177,8 @@ const Game = () => {
         }
       }
       onetime = 1;
+      start_day = 9;
+      end_day = endDate+8
     } else if (startDayOfWeek === 3 && onetime === 0) {
       for (let i = 10; i < endDate + 10; i++) {
         daycount = Number(daycount) + 1;
@@ -194,7 +186,7 @@ const Game = () => {
         if (endweek > 6) {
           endweek = 0;
         }
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = daycount;
           return {
@@ -206,6 +198,8 @@ const Game = () => {
         }
       }
       onetime = 1;
+      start_day = 10;
+      end_day = endDate+9
     } else if (startDayOfWeek === 4 && onetime === 0) {
       for (let i = 11; i < endDate + 11; i++) {
         daycount = Number(daycount) + 1;
@@ -213,7 +207,7 @@ const Game = () => {
         if (endweek > 6) {
           endweek = 0;
         }
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = daycount;
           return {
@@ -225,6 +219,8 @@ const Game = () => {
         }
       }
       onetime = 1;
+      start_day = 11;
+      end_day = endDate+10
     } else if (startDayOfWeek === 5 && onetime === 0) {
       for (let i = 12; i < endDate + 12; i++) {
         daycount = Number(daycount) + 1;
@@ -232,7 +228,7 @@ const Game = () => {
         if (endweek > 6) {
           endweek = 0;
         }
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = daycount;
           return {
@@ -244,6 +240,8 @@ const Game = () => {
         }
       }
       onetime = 1;
+      start_day = 12;
+      end_day = endDate+11
     } else if (startDayOfWeek === 6 && onetime === 0) {
       for (let i = 13; i < endDate + 13; i++) {
         daycount = Number(daycount) + 1;
@@ -251,7 +249,7 @@ const Game = () => {
         if (endweek > 6) {
           endweek = 0;
         }
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = daycount;
           return {
@@ -263,6 +261,8 @@ const Game = () => {
         }
       }
       onetime = 1;
+      start_day = 13;
+      end_day = endDate+12
     }
   }
 
@@ -294,7 +294,7 @@ const Game = () => {
       const before_uruu_year_day = before_day + 1;
       daycount = before_uruu_year_day;
       for (let i = 7; i < 49; i++) {
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = null;
           return {
@@ -309,7 +309,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -317,6 +317,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 42;
             ii = i;
             break;
           }
@@ -327,12 +329,13 @@ const Game = () => {
           ii === 16 ||
           ii === 17 ||
           ii === 18 ||
-          ii === 19
+          ii === 19 ||
+          ii === 20
         ) {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_uruu_year_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -346,7 +349,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -354,6 +357,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 35;
               ii = i;
               break;
             }
@@ -366,7 +371,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -374,6 +379,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 43;
             ii = i;
             break;
           }
@@ -384,12 +391,13 @@ const Game = () => {
           ii === 16 ||
           ii === 17 ||
           ii === 18 ||
-          ii === 19
+          ii === 19 ||
+          ii === 20
         ) {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_uruu_year_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -403,7 +411,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -411,6 +419,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 36;
               break;
             }
           }
@@ -422,7 +432,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -430,6 +440,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 44;
             ii = i;
             break;
           }
@@ -440,12 +452,13 @@ const Game = () => {
           ii === 16 ||
           ii === 17 ||
           ii === 18 ||
-          ii === 19
+          ii === 19 ||
+          ii === 20
         ) {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_uruu_year_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -459,7 +472,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -467,6 +480,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 37;
               break;
             }
           }
@@ -478,7 +493,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -486,6 +501,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 45;
             ii = i;
             break;
           }
@@ -496,12 +513,13 @@ const Game = () => {
           ii === 16 ||
           ii === 17 ||
           ii === 18 ||
-          ii === 19
+          ii === 19 ||
+          ii === 20
         ) {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_uruu_year_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -515,7 +533,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -523,6 +541,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 38;
               break;
             }
           }
@@ -534,7 +554,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -542,6 +562,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 46;
             ii = i;
             break;
           }
@@ -552,12 +574,13 @@ const Game = () => {
           ii === 16 ||
           ii === 17 ||
           ii === 18 ||
-          ii === 19
+          ii === 19 ||
+          ii === 20
         ) {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_uruu_year_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -571,7 +594,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -579,6 +602,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 39;
               break;
             }
           }
@@ -590,7 +615,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -598,6 +623,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 47;
             ii = i;
             break;
           }
@@ -608,12 +635,13 @@ const Game = () => {
           ii === 16 ||
           ii === 17 ||
           ii === 18 ||
-          ii === 19
+          ii === 19 ||
+          ii === 20
         ) {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_uruu_year_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -627,7 +655,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -635,6 +663,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 40;
               break;
             }
           }
@@ -646,7 +676,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -654,6 +684,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 48;
             ii = i;
             break;
           }
@@ -664,12 +696,13 @@ const Game = () => {
           ii === 16 ||
           ii === 17 ||
           ii === 18 ||
-          ii === 19
+          ii === 19 ||
+          ii === 20
         ) {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_uruu_year_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -683,7 +716,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -691,6 +724,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 41;
               break;
             }
           }
@@ -699,7 +734,7 @@ const Game = () => {
     } else {
       daycount = before_day;
       for (let i = 7; i < 49; i++) {
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = null;
           return {
@@ -714,7 +749,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -722,6 +757,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 42;
             ii = i;
             break;
           }
@@ -737,7 +774,7 @@ const Game = () => {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -751,7 +788,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -759,6 +796,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 35;
               break;
             }
           }
@@ -770,7 +809,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -778,6 +817,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 43;
             ii = i;
             break;
           }
@@ -793,7 +834,7 @@ const Game = () => {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -807,7 +848,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -815,6 +856,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 36;
               break;
             }
           }
@@ -826,7 +869,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -834,6 +877,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 44;
             ii = i;
             break;
           }
@@ -849,7 +894,7 @@ const Game = () => {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -863,7 +908,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -871,6 +916,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 37;
               break;
             }
           }
@@ -882,7 +929,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -890,6 +937,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 45;
             ii = i;
             break;
           }
@@ -905,7 +954,7 @@ const Game = () => {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -919,7 +968,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -927,6 +976,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 38;
               break;
             }
           }
@@ -938,7 +989,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -946,6 +997,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 46;
             ii = i;
             break;
           }
@@ -961,7 +1014,7 @@ const Game = () => {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -975,7 +1028,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -983,6 +1036,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 39;
               break;
             }
           }
@@ -994,7 +1049,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1002,6 +1057,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 47;
             ii = i;
             break;
           }
@@ -1017,7 +1074,7 @@ const Game = () => {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -1031,7 +1088,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -1039,6 +1096,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 40;
               break;
             }
           }
@@ -1050,7 +1109,7 @@ const Game = () => {
           if (new_startDayOfWeek < 0) {
             new_startDayOfWeek = 6;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1058,6 +1117,8 @@ const Game = () => {
             };
           })(current);
           if (daycount === 1) {
+            start_day = i;
+            end_day = 48;
             ii = i;
             break;
           }
@@ -1073,7 +1134,7 @@ const Game = () => {
           new_startDayOfWeek = new_startDayOfWeek2;
           daycount = before_day;
           for (let i = 7; i < 49; i++) {
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = null;
               return {
@@ -1087,7 +1148,7 @@ const Game = () => {
             if (new_startDayOfWeek < 0) {
               new_startDayOfWeek = 6;
             }
-            const next: Step = (({ squares }) => {
+            (({ squares }) => {
               const nextSquares = squares as BoardState;
               nextSquares[i] = daycount;
               return {
@@ -1095,6 +1156,8 @@ const Game = () => {
               };
             })(current);
             if (daycount === 1) {
+              start_day = i;
+              end_day = 41;
               break;
             }
           }
@@ -1122,7 +1185,7 @@ const Game = () => {
     if (after_month === 2 && year % 4 === 0) {
       const after_uruu_year_day = after_day + 1;
       for (let i = 7; i < 49; i++) {
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = null;
           return {
@@ -1130,6 +1193,8 @@ const Game = () => {
           };
         })(current);
         if (daycount === endDate) {
+          start_day = 7;
+          end_day = i;
           break;
         }
       }
@@ -1140,7 +1205,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1148,6 +1213,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 7;
+        end_day = after_uruu_year_day+6;
       } else if (endweek === 1) {
         for (let i = 8; i < after_uruu_year_day + 8; i++) {
           daycount = daycount + 1;
@@ -1155,7 +1222,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1163,6 +1230,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 8;
+        end_day = after_uruu_year_day+7;
       } else if (endweek === 2) {
         for (let i = 9; i < after_uruu_year_day + 9; i++) {
           daycount = daycount + 1;
@@ -1170,7 +1239,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1178,6 +1247,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 9;
+        end_day = after_uruu_year_day+8;
       } else if (endweek === 3) {
         for (let i = 10; i < after_uruu_year_day + 10; i++) {
           daycount = daycount + 1;
@@ -1185,7 +1256,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1193,6 +1264,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 10;
+        end_day = after_uruu_year_day+9;
       } else if (endweek === 4) {
         for (let i = 11; i < after_uruu_year_day + 11; i++) {
           daycount = daycount + 1;
@@ -1200,7 +1273,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1208,6 +1281,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 11;
+        end_day = after_uruu_year_day+10;
       } else if (endweek === 5) {
         for (let i = 12; i < after_uruu_year_day + 12; i++) {
           daycount = daycount + 1;
@@ -1215,7 +1290,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1223,6 +1298,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 12;
+        end_day = after_uruu_year_day+11;
       } else if (endweek === 6) {
         for (let i = 13; i < after_uruu_year_day + 13; i++) {
           daycount = daycount + 1;
@@ -1230,7 +1307,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1238,10 +1315,12 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 13;
+        end_day = after_uruu_year_day+12;
       }
     } else {
       for (let i = 7; i < 49; i++) {
-        const next: Step = (({ squares }) => {
+        (({ squares }) => {
           const nextSquares = squares as BoardState;
           nextSquares[i] = null;
           return {
@@ -1259,7 +1338,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1267,6 +1346,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 7;
+        end_day = after_day+6;
       } else if (endweek === 1) {
         for (let i = 8; i < after_day + 8; i++) {
           daycount = daycount + 1;
@@ -1274,7 +1355,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1282,6 +1363,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 8;
+        end_day = after_day+7;
       } else if (endweek === 2) {
         for (let i = 9; i < after_day + 9; i++) {
           daycount = daycount + 1;
@@ -1289,7 +1372,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1297,6 +1380,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 9;
+        end_day = after_day+8;
       } else if (endweek === 3) {
         for (let i = 10; i < after_day + 10; i++) {
           daycount = daycount + 1;
@@ -1304,7 +1389,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1312,6 +1397,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 10;
+        end_day = after_day+9;
       } else if (endweek === 4) {
         for (let i = 11; i < after_day + 11; i++) {
           daycount = daycount + 1;
@@ -1319,7 +1406,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1327,6 +1414,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 11;
+        end_day = after_day+10;
       } else if (endweek === 5) {
         for (let i = 12; i < after_day + 12; i++) {
           daycount = daycount + 1;
@@ -1334,7 +1423,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1342,6 +1431,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 12;
+        end_day = after_day+11;
       } else if (endweek === 6) {
         for (let i = 13; i < after_day + 13; i++) {
           daycount = daycount + 1;
@@ -1349,7 +1440,7 @@ const Game = () => {
           if (endweek > 6) {
             endweek = 0;
           }
-          const next: Step = (({ squares }) => {
+          (({ squares }) => {
             const nextSquares = squares as BoardState;
             nextSquares[i] = daycount;
             return {
@@ -1357,6 +1448,8 @@ const Game = () => {
             };
           })(current);
         }
+        start_day = 13;
+        end_day = after_day+12;
       }
     }
   };
@@ -1365,7 +1458,7 @@ const Game = () => {
   if (year === today_year && month === today_month) {
     now_day = day;
     for (let i = 7; i < 49; i++) {
-      const next: Step = (({ squares }) => {
+      (({ squares }) => {
         const nextSquares = squares as BoardState;
         if (nextSquares[i] === now_day) {
           nowmonthcheck = i;
@@ -1379,14 +1472,14 @@ const Game = () => {
     now_day = 0;
   }
 
-  //console.log(new_startDayOfWeek)
-  //console.log(endweek)
+  //console.log(start_day)
+  //console.log(end_day)
 
   const handleClick = (i: number) => {
     if (i < 7) {
       return;
     }
-    }
+  };
 
   return (
     <div>
@@ -1405,6 +1498,10 @@ const Game = () => {
           onClick={handleClick}
           today={now_day}
           nowmonthposition={nowmonthcheck}
+          B_start_day={start_day}
+          B_end_day={end_day}
+          month={month}
+          year={year}
         />
       </div>
       <div className="game-info"></div>

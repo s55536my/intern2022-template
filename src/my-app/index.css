@@ -44,7 +44,92 @@ body {
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 100px;
+    width: 120px;
+    position: relative;
+    text-align: left;
+    display: flex;
+    vertical-align:top;
+    font-size:13px;
+    left :190px;
+    top:80px;
+  }
+
+  .square3 {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 80px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 120px;
+    position: relative;
+    text-align: left;
+    display: flex;
+    vertical-align:top;
+    font-size:13px;
+    left :190px;
+    top:80px;
+    color:rgb(59, 204, 156);
+  }
+
+ .newevent{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    text-align: center;
+    display: flex;
+    vertical-align:top;
+    background-color: rgb(74, 189, 74);
+    max-width: 115px;
+    max-height: 20px;
+    top:25px;
+    color:white;
+    font-size: 13px;
+    line-height: 17px;
+    z-index:10;
+ }
+
+  .square2 {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 80px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 120px;
+    position: relative;
+    text-align: left;
+    display: flex;
+    vertical-align:top;
+    font-size:13px;
+    left :190px;
+    top:80px;
+  }
+
+  .square1 {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 40px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 120px;
     position: relative;
     text-align: left;
     display: flex;
@@ -56,8 +141,8 @@ body {
 
   .today{
     position:absolute;
-    background-color:aquamarine;
-    width: 98px;
+    background-color:rgb(59, 204, 156);
+    width: 119px;
     height: 10px;
     left:0;
     right: 0;
@@ -88,14 +173,14 @@ body {
     width: 135px;
     position: relative;
     font-size:25px;
-    left: 933px;
+    left: 1069px;
     top: 110px;
   }
 
   .mae{
     background: #fff;
     position: relative;
-    left: 903px;
+    left: 1039px;
     top: 143px;
     width: 25px;
     height: 25px;
@@ -105,7 +190,7 @@ body {
   .tugi{
     background: #fff;
     position:relative;
-    left: 1064px;
+    left: 1200px;
     top: 80px;
     width: 25px;
     height: 25px;

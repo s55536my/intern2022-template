@@ -1,14 +1,17 @@
-import { Repeat } from "typescript-tuple";
+import type { Repeat } from "typescript-tuple";
 import Square from "~/my-app/Board/Square/Square";
+import Square1 from "~/my-app/Board/Square/Square1";
+import Square2 from "~/my-app/Board/Square/Square2";
+import Square3 from "~/my-app/Board/Square/Square3";
 
 type SquareState =
-  | "月"
-  | "火"
-  | "水"
-  | "木"
-  | "金"
-  | "土"
-  | "日"
+  | "月曜日"
+  | "火曜日"
+  | "水曜日"
+  | "木曜日"
+  | "金曜日"
+  | "土曜日"
+  | "日曜日"
   | number
   | null;
 
@@ -19,19 +22,56 @@ type BoardProps = {
   onClick: (i: number) => void;
   today: number;
   nowmonthposition: number;
+  B_start_day: number;
+  B_end_day: number;
+  month:number;
+  year:number;
 };
 
-const check: any[] = [];
+//const check: any[] = [];
 
 const Board = (props: BoardProps) => {
-  const renderSquare = (i: number) => (
-    <Square
-      value={props.squares[i]}
-      onClick={() => props.onClick(i)}
-      SQi={i}
-      SQ2={props.nowmonthposition}
-    />
-  );
+  const renderSquare = (i: number) => {
+    if (i < 7) {
+      return (
+        <Square1
+          value={props.squares[i]}
+          onClick={() => props.onClick(i)}
+          SQi={i}
+          SQ2={props.nowmonthposition}
+        />
+      );
+    } else if (i >= props.B_start_day && i < props.B_end_day + 1) {
+      if (props.nowmonthposition !== 0 && i === props.nowmonthposition) {
+        return (
+          <Square3
+            value={props.squares[i]}
+            onClick={() => props.onClick(i)}
+            SQi={i}
+            SQ2={props.nowmonthposition}
+          />
+        );
+      } else {
+        return (
+          <Square
+            value={props.squares[i]}
+            onClick={() => props.onClick(i)}
+            SQi={i}
+            SQ2={props.nowmonthposition}
+          />
+        );
+      }
+    } else {
+      return (
+        <Square2
+          value={props.squares[i]}
+          onClick={() => props.onClick(i)}
+          SQi={i}
+          SQ2={props.nowmonthposition}
+        />
+      );
+    }
+  };
 
   /*if(props.today !== 0){
     for(let j = 0;j<32;j++){
