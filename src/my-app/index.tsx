@@ -44,16 +44,25 @@ let onetime = -1;
 let endweek = startDayOfWeek;
 let ii = 0;
 let now_day = 0;
-let start_day =0;
+let start_day = 0;
 let end_day = 0;
+const count = 0;
 
 const today_year = hiduke.getFullYear();
 const today_month = hiduke.getMonth() + 1;
 
 let checknumber = 0;
 
+export type Database = {
+  event: string;
+  date: string;
+  starttime: string;
+  endtime: string;
+  eventDetail: string;
+};
+
 const Game = () => {
-  const [state, setState] = useState<GameState>({
+  const [state] = useState<GameState>({
     history: [
       {
         squares: [
@@ -114,6 +123,8 @@ const Game = () => {
   const [year, setyear] = useState(hiduke.getFullYear());
   const [month, setmonth] = useState(hiduke.getMonth() + 1);
 
+  const [savedata, setSavedata] = useState<Database[]>([]);
+
   const current = state.history[0];
 
   let daycount = 0;
@@ -136,7 +147,7 @@ const Game = () => {
       }
       onetime = 1;
       start_day = 7;
-      end_day = endDate+6
+      end_day = endDate + 6;
     } else if (startDayOfWeek === 1 && onetime === 0) {
       for (let i = 8; i < endDate + 8; i++) {
         daycount = Number(daycount) + 1;
@@ -157,7 +168,7 @@ const Game = () => {
       }
       onetime = 1;
       start_day = 8;
-      end_day = endDate+7
+      end_day = endDate + 7;
     } else if (startDayOfWeek === 2 && onetime === 0) {
       for (let i = 9; i < endDate + 9; i++) {
         daycount = Number(daycount) + 1;
@@ -178,7 +189,7 @@ const Game = () => {
       }
       onetime = 1;
       start_day = 9;
-      end_day = endDate+8
+      end_day = endDate + 8;
     } else if (startDayOfWeek === 3 && onetime === 0) {
       for (let i = 10; i < endDate + 10; i++) {
         daycount = Number(daycount) + 1;
@@ -199,7 +210,7 @@ const Game = () => {
       }
       onetime = 1;
       start_day = 10;
-      end_day = endDate+9
+      end_day = endDate + 9;
     } else if (startDayOfWeek === 4 && onetime === 0) {
       for (let i = 11; i < endDate + 11; i++) {
         daycount = Number(daycount) + 1;
@@ -220,7 +231,7 @@ const Game = () => {
       }
       onetime = 1;
       start_day = 11;
-      end_day = endDate+10
+      end_day = endDate + 10;
     } else if (startDayOfWeek === 5 && onetime === 0) {
       for (let i = 12; i < endDate + 12; i++) {
         daycount = Number(daycount) + 1;
@@ -241,7 +252,7 @@ const Game = () => {
       }
       onetime = 1;
       start_day = 12;
-      end_day = endDate+11
+      end_day = endDate + 11;
     } else if (startDayOfWeek === 6 && onetime === 0) {
       for (let i = 13; i < endDate + 13; i++) {
         daycount = Number(daycount) + 1;
@@ -262,7 +273,7 @@ const Game = () => {
       }
       onetime = 1;
       start_day = 13;
-      end_day = endDate+12
+      end_day = endDate + 12;
     }
   }
 
@@ -1214,7 +1225,7 @@ const Game = () => {
           })(current);
         }
         start_day = 7;
-        end_day = after_uruu_year_day+6;
+        end_day = after_uruu_year_day + 6;
       } else if (endweek === 1) {
         for (let i = 8; i < after_uruu_year_day + 8; i++) {
           daycount = daycount + 1;
@@ -1231,7 +1242,7 @@ const Game = () => {
           })(current);
         }
         start_day = 8;
-        end_day = after_uruu_year_day+7;
+        end_day = after_uruu_year_day + 7;
       } else if (endweek === 2) {
         for (let i = 9; i < after_uruu_year_day + 9; i++) {
           daycount = daycount + 1;
@@ -1248,7 +1259,7 @@ const Game = () => {
           })(current);
         }
         start_day = 9;
-        end_day = after_uruu_year_day+8;
+        end_day = after_uruu_year_day + 8;
       } else if (endweek === 3) {
         for (let i = 10; i < after_uruu_year_day + 10; i++) {
           daycount = daycount + 1;
@@ -1265,7 +1276,7 @@ const Game = () => {
           })(current);
         }
         start_day = 10;
-        end_day = after_uruu_year_day+9;
+        end_day = after_uruu_year_day + 9;
       } else if (endweek === 4) {
         for (let i = 11; i < after_uruu_year_day + 11; i++) {
           daycount = daycount + 1;
@@ -1282,7 +1293,7 @@ const Game = () => {
           })(current);
         }
         start_day = 11;
-        end_day = after_uruu_year_day+10;
+        end_day = after_uruu_year_day + 10;
       } else if (endweek === 5) {
         for (let i = 12; i < after_uruu_year_day + 12; i++) {
           daycount = daycount + 1;
@@ -1299,7 +1310,7 @@ const Game = () => {
           })(current);
         }
         start_day = 12;
-        end_day = after_uruu_year_day+11;
+        end_day = after_uruu_year_day + 11;
       } else if (endweek === 6) {
         for (let i = 13; i < after_uruu_year_day + 13; i++) {
           daycount = daycount + 1;
@@ -1316,7 +1327,7 @@ const Game = () => {
           })(current);
         }
         start_day = 13;
-        end_day = after_uruu_year_day+12;
+        end_day = after_uruu_year_day + 12;
       }
     } else {
       for (let i = 7; i < 49; i++) {
@@ -1347,7 +1358,7 @@ const Game = () => {
           })(current);
         }
         start_day = 7;
-        end_day = after_day+6;
+        end_day = after_day + 6;
       } else if (endweek === 1) {
         for (let i = 8; i < after_day + 8; i++) {
           daycount = daycount + 1;
@@ -1364,7 +1375,7 @@ const Game = () => {
           })(current);
         }
         start_day = 8;
-        end_day = after_day+7;
+        end_day = after_day + 7;
       } else if (endweek === 2) {
         for (let i = 9; i < after_day + 9; i++) {
           daycount = daycount + 1;
@@ -1381,7 +1392,7 @@ const Game = () => {
           })(current);
         }
         start_day = 9;
-        end_day = after_day+8;
+        end_day = after_day + 8;
       } else if (endweek === 3) {
         for (let i = 10; i < after_day + 10; i++) {
           daycount = daycount + 1;
@@ -1398,7 +1409,7 @@ const Game = () => {
           })(current);
         }
         start_day = 10;
-        end_day = after_day+9;
+        end_day = after_day + 9;
       } else if (endweek === 4) {
         for (let i = 11; i < after_day + 11; i++) {
           daycount = daycount + 1;
@@ -1415,7 +1426,7 @@ const Game = () => {
           })(current);
         }
         start_day = 11;
-        end_day = after_day+10;
+        end_day = after_day + 10;
       } else if (endweek === 5) {
         for (let i = 12; i < after_day + 12; i++) {
           daycount = daycount + 1;
@@ -1432,7 +1443,7 @@ const Game = () => {
           })(current);
         }
         start_day = 12;
-        end_day = after_day+11;
+        end_day = after_day + 11;
       } else if (endweek === 6) {
         for (let i = 13; i < after_day + 13; i++) {
           daycount = daycount + 1;
@@ -1449,7 +1460,7 @@ const Game = () => {
           })(current);
         }
         start_day = 13;
-        end_day = after_day+12;
+        end_day = after_day + 12;
       }
     }
   };
@@ -1502,6 +1513,9 @@ const Game = () => {
           B_end_day={end_day}
           month={month}
           year={year}
+          count={count}
+          setsavedata={setSavedata}
+          savedata={savedata}
         />
       </div>
       <div className="game-info"></div>

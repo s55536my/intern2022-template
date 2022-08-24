@@ -81,17 +81,19 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    position: absolute;
+    position: relative;
     text-align: center;
     display: flex;
     vertical-align:top;
     background-color: rgb(74, 189, 74);
-    max-width: 115px;
+    max-width: 110px;
     max-height: 20px;
     top:25px;
+    right:8px;
     color:white;
     font-size: 13px;
     line-height: 17px;
+    border-radius:3px;
     z-index:10;
  }
 

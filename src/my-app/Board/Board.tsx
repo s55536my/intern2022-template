@@ -3,6 +3,7 @@ import Square from "~/my-app/Board/Square/Square";
 import Square1 from "~/my-app/Board/Square/Square1";
 import Square2 from "~/my-app/Board/Square/Square2";
 import Square3 from "~/my-app/Board/Square/Square3";
+import type { Database } from "..";
 
 type SquareState =
   | "月曜日"
@@ -24,11 +25,12 @@ type BoardProps = {
   nowmonthposition: number;
   B_start_day: number;
   B_end_day: number;
-  month:number;
-  year:number;
+  month: number;
+  year: number;
+  count: number;
+  setsavedata: React.Dispatch<React.SetStateAction<Database[]>>;
+  savedata: Database[];
 };
-
-//const check: any[] = [];
 
 const Board = (props: BoardProps) => {
   const renderSquare = (i: number) => {
@@ -47,17 +49,19 @@ const Board = (props: BoardProps) => {
           <Square3
             value={props.squares[i]}
             onClick={() => props.onClick(i)}
-            SQi={i}
-            SQ2={props.nowmonthposition}
+            SQi={props.month}
+            SQ2={props.year}
           />
         );
       } else {
         return (
           <Square
             value={props.squares[i]}
-            onClick={() => props.onClick(i)}
-            SQi={i}
-            SQ2={props.nowmonthposition}
+            month={props.month}
+            year={props.year}
+            count={props.count}
+            setsavedata={props.setsavedata}
+            savedata={props.savedata}
           />
         );
       }
