@@ -123,7 +123,36 @@ const Game = () => {
   const [year, setyear] = useState(hiduke.getFullYear());
   const [month, setmonth] = useState(hiduke.getMonth() + 1);
 
-  const [savedata, setSavedata] = useState<Database[]>([]);
+  const [savedata, setSavedata] = useState<Database[]>([
+    {
+      event: "山登り",
+      date: "2022-08-01",
+      starttime: "9:00",
+      endtime: "15:00",
+      eventDetail: "OOさんとOOで山登りをする.",
+    },
+    {
+      event: "山登り",
+      date: "2022-08-25",
+      starttime: "9:00",
+      endtime: "15:00",
+      eventDetail: "OOさんとOO.",
+    },
+    {
+      event: "山登り",
+      date: "2022-08-10",
+      starttime: "9:00",
+      endtime: "15:00",
+      eventDetail: "OOさんとOO.",
+    },
+    {
+      event: "山登り",
+      date: "2022-08-9",
+      starttime: "9:00",
+      endtime: "15:00",
+      eventDetail: "OOさんとOO.",
+    },
+  ]);
 
   const current = state.history[0];
 

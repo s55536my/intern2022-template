@@ -48,9 +48,11 @@ const Board = (props: BoardProps) => {
         return (
           <Square3
             value={props.squares[i]}
-            onClick={() => props.onClick(i)}
-            SQi={props.month}
-            SQ2={props.year}
+            month={props.month}
+            year={props.year}
+            count={props.count}
+            setsavedata={props.setsavedata}
+            savedata={props.savedata}
           />
         );
       } else {

@@ -45,7 +45,21 @@ const Square = (props: SquareProps) => {
   const [eventmore, setEventmore] = useState("");
 
   const handlesave = () => {
-    console.log(888);
+    props.setsavedata([
+      ...props.savedata,
+      {
+        event: event,
+        date: date,
+        starttime: starttime,
+        endtime: endtime,
+        eventDetail: eventmore,
+      },
+    ]);
+    setEvent("");
+    setDate("");
+    setStarttime("");
+    setEndtime("");
+    setEventmore("");
   };
 
   return (
@@ -96,7 +110,6 @@ const Square = (props: SquareProps) => {
               top="10px"
               value={date}
               onChange={(e) => {
-                console.log(e.target.value);
                 setDate(e.target.value);
               }}
             />
