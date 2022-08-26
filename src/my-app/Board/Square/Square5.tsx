@@ -66,7 +66,7 @@ const Square = (props: SquareProps) => {
       <PopoverTrigger>
         <button className="square" onClick={onOpen}>
           {props.value}
-          {"日"}
+          {" 日"}
           <Data
             month={props.month}
             year={props.year}
@@ -100,7 +100,7 @@ const Square = (props: SquareProps) => {
               onClose(), del();
             }}
           />
-          <PopoverBody>
+          <PopoverBody height="210px">
             <Input
               id="event"
               placeholder="タイトルを入力"

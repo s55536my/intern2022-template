@@ -2,8 +2,10 @@ import { useState } from "react";
 import Board from "~/my-app/Board/Board";
 import "./index.css";
 import type { Repeat } from "typescript-tuple";
+import { Icon } from "@chakra-ui/icons";
+import { RiCalendar2Fill } from "react-icons/ri";
 
-type SquareState =
+export type SquareState =
   | "月曜日"
   | "火曜日"
   | "水曜日"
@@ -123,36 +125,7 @@ const Game = () => {
   const [year, setyear] = useState(hiduke.getFullYear());
   const [month, setmonth] = useState(hiduke.getMonth() + 1);
 
-  const [savedata, setSavedata] = useState<Database[]>([
-    {
-      event: "山登り",
-      date: "2022-08-01",
-      starttime: "9:00",
-      endtime: "15:00",
-      eventDetail: "OOさんとOOで山登りをする.",
-    },
-    {
-      event: "山登り",
-      date: "2022-08-25",
-      starttime: "9:00",
-      endtime: "15:00",
-      eventDetail: "OOさんとOO.",
-    },
-    {
-      event: "山登り",
-      date: "2022-08-10",
-      starttime: "9:00",
-      endtime: "15:00",
-      eventDetail: "OOさんとOO.",
-    },
-    {
-      event: "山登り",
-      date: "2022-08-9",
-      starttime: "9:00",
-      endtime: "15:00",
-      eventDetail: "OOさんとOO.",
-    },
-  ]);
+  const [savedata, setSavedata] = useState<Database[]>([]);
 
   const current = state.history[0];
 
@@ -1523,6 +1496,10 @@ const Game = () => {
 
   return (
     <div>
+      <div className="name">
+        <Icon w={10} h={10} color="green" as={RiCalendar2Fill}></Icon>
+      </div>
+      <div className="name2">カレンダー</div>
       <button className="mae" onClick={before}>
         ＜
       </button>

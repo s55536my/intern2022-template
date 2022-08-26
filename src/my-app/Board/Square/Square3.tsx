@@ -11,22 +11,12 @@ import {
   Input,
   Box,
   IconButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 import { useState } from "react";
 import Data from "~/my-app/Board/Square/Data/Data";
-import type { Database } from "~/my-app";
-
-type SquareState =
-  | "月曜日"
-  | "火曜日"
-  | "水曜日"
-  | "木曜日"
-  | "金曜日"
-  | "土曜日"
-  | "日曜日"
-  | number
-  | null;
+import type { Database, SquareState } from "~/my-app";
 
 type SquareProps = {
   value: SquareState;
@@ -40,9 +30,10 @@ type SquareProps = {
 const Square = (props: SquareProps) => {
   const [event, setEvent] = useState("");
   const [date, setDate] = useState("");
-  const [starttime, setStarttime] = useState("");
-  const [endtime, setEndtime] = useState("");
+  const [starttime, setStarttime] = useState("--:--");
+  const [endtime, setEndtime] = useState("--:--");
   const [eventmore, setEventmore] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handlesave = () => {
     props.setsavedata([
@@ -57,17 +48,26 @@ const Square = (props: SquareProps) => {
     ]);
     setEvent("");
     setDate("");
-    setStarttime("");
-    setEndtime("");
+    setStarttime("--:--");
+    setEndtime("--:--");
+    setEventmore("");
+  };
+
+  const del = () => {
+    setEvent("");
+    setDate("");
+    setStarttime("--:--");
+    setEndtime("--:--");
     setEventmore("");
   };
 
   return (
-    <Popover>
+    <Popover isOpen={isOpen}>
       <PopoverTrigger>
-        <button className="square">
+        <button className="square3" onClick={onOpen}>
           <div className="today"></div>
           {props.value}
+          {"日"}
           <Data
             month={props.month}
             year={props.year}
@@ -91,10 +91,16 @@ const Square = (props: SquareProps) => {
               width="25px"
               left="240px"
               top="5px"
-              onClick={handlesave}
+              onClick={() => {
+                handlesave(), onClose();
+              }}
             />
           </PopoverHeader>
-          <PopoverCloseButton />
+          <PopoverCloseButton
+            onClick={() => {
+              onClose(), del();
+            }}
+          />
           <PopoverBody height="210px">
             <Input
               id="event"

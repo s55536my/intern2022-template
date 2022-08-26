@@ -1,13 +1,4 @@
-type SquareState =
-| "月曜日"
-| "火曜日"
-| "水曜日"
-| "木曜日"
-| "金曜日"
-| "土曜日"
-| "日曜日"
-  | number
-  | null;
+import type { SquareState } from "~/my-app";
 
 type SquareProps = {
   value: SquareState;
@@ -17,9 +8,7 @@ type SquareProps = {
 };
 
 const Square1 = (props: SquareProps) => (
-      <div className="square1">
-        {props.value}
-      </div>
+  <div className="square1">{props.value}</div>
 );
 
 export default Square1;
