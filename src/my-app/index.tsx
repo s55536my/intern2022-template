@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Board from "~/my-app/Board/Board";
+import Board from "./Board/Board";
 import "./index.css";
 import type { Repeat } from "typescript-tuple";
 import { Icon } from "@chakra-ui/icons";
