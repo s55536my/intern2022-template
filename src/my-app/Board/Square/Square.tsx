@@ -62,6 +62,7 @@ const Square = (props: SquareProps) => {
     setEventmore("");
   };
 
+  console.log(888888);
   return (
     <Popover isOpen={isOpen}>
       <PopoverTrigger>

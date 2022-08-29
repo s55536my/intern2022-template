@@ -42,11 +42,12 @@ const endDate = new Date(
 const month_day: Array<number> = [
   31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 31,
 ];
-let onetime = -1;
+let onetime = 0;
 let endweek = startDayOfWeek;
 let ii = 0;
 let now_day = 0;
 let start_day = 0;
+[];
 let end_day = 0;
 const count = 0;
 
@@ -279,8 +280,6 @@ const Game = () => {
       end_day = endDate + 12;
     }
   }
-
-  onetime = onetime + 1;
 
   const before = () => {
     //console.log(new_startDayOfWeek)
