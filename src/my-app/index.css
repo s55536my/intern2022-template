@@ -1,3 +1,7 @@
+html,body{
+  overflow: hidden;
+}
+
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
@@ -38,19 +42,20 @@ body {
     float: left;
     font-size: 24px;
     font-weight: bold;
-    line-height: 34px;
-    height: 80px;
+    line-height: 25px;
+    height: 85px;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 120px;
+    width: 140px;
     position: relative;
     text-align: left;
     display: flex;
     vertical-align:top;
     font-size:13px;
     left :190px;
+    font-weight: 100;
   }
 
   .name{
@@ -72,13 +77,13 @@ body {
     float: left;
     font-size: 24px;
     font-weight: bold;
-    line-height: 34px;
-    height: 80px;
+    line-height: 25px;
+    height: 85px;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 120px;
+    width: 140px;
     position: relative;
     text-align: left;
     display: flex;
@@ -86,6 +91,7 @@ body {
     font-size:13px;
     left :190px;
     color:rgb(59, 204, 156);
+    font-weight: 100;
   }
 
  .newevent{
@@ -97,10 +103,10 @@ body {
     display: flex;
     vertical-align:top;
     background-color: rgb(74, 189, 74);
-    max-width: 90px;
+    width: 135px;
     max-height: 20px;
-    top:30px;
-    right:20px;
+    top:25px;
+    left:1px;
     color:white;
     font-size: 13px;
     line-height: 17px;
@@ -115,12 +121,12 @@ body {
     font-size: 24px;
     font-weight: bold;
     line-height: 34px;
-    height: 80px;
+    height: 85px;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 120px;
+    width: 140px;
     position: relative;
     text-align: left;
     display: flex;
@@ -135,28 +141,28 @@ body {
     float: left;
     font-size: 24px;
     font-weight: bold;
-    line-height: 34px;
-    height: 40px;
+    line-height: 25px;
+    height: 25px;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
-    width: 120px;
+    width: 140px;
     position: relative;
     text-align: left;
     display: flex;
     vertical-align:top;
     font-size:13px;
     left :190px;
+    font-weight: 100;
   }
 
   .today{
     position:absolute;
     background-color:rgb(59, 204, 156);
-    width: 119px;
-    height: 10px;
-    left:0;
-    right: 0;
+    width: 139px;
+    height: 4px;
+    right: 0px;
     top: 0px;
     text-align:left;
     vertical-align:top;
@@ -183,16 +189,16 @@ body {
     background: #fff;
     width: 135px;
     position: relative;
-    font-size:25px;
-    left: 1069px;
+    font-size:20px;
+    left: 1229px;
     top: 25px;
   }
 
   .mae{
     background: #fff;
     position: relative;
-    left: 1039px;
-    top: 60px;
+    left: 1199px;
+    top: 54px;
     width: 25px;
     height: 25px;
   }
@@ -201,8 +207,17 @@ body {
   .tugi{
     background: #fff;
     position:relative;
-    left: 1200px;
-    bottom: 4px;
+    left: 1335px;
+    bottom: 2px;
     width: 25px;
     height: 25px;
+  }
+
+  .hi{
+    position: absolute;
+    width: 200px;
+  }
+
+  .event{
+    margin-bottom: 2px;
   }

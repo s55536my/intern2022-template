@@ -13,6 +13,7 @@ import {
   Button,
   IconButton,
   Input,
+  useDisclosure,
   Stack,
   HStack,
 } from "@chakra-ui/react";
@@ -40,34 +41,29 @@ let slicemonth;
 let sliceday;
 
 const Data = (props: Eventprops) => {
-  const [check, setCheck] = useState(true);
+  const [check, setCheck] = useState(0);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [event, setEvent] = useState("");
   const [date, setDate] = useState("");
   const [starttime, setStarttime] = useState("");
   const [endtime, setEndtime] = useState("");
   const [eventmore, setEventmore] = useState("");
 
-  let checknum = 0;
+  let checknumber = 0;
+  const del = () => {
+    props.setsavedata(
+      props.savedata.filter((same, index) => index !== checknumber)
+    );
+  };
 
-  const a = props.savedata.filter((da, ii) => {
-    sliceyear = da.date.substring(0, 4);
-    slicemonth = da.date.substring(7, 5);
-    sliceday = da.date.substring(8);
+  
 
-    if (
-      Number(sliceyear) === props.year &&
-      Number(slicemonth) === props.month &&
-      Number(sliceday) === Number(props.day)
-    ) {
-      da.position = ii;
-      checknum = checknum + 1;
-      return da;
-    }
-  });
-
-  const res = a.map((data) => {
+  if (props.savedata === undefined) {
+    return <></>;
+  }
+  const res = props.savedata.map((data, index) => {
     const chenge = () => {
-      setCheck(false);
+      setCheck(1);
       setEvent(data.event);
       setDate(data.date);
       setStarttime(data.starttime);
@@ -76,40 +72,44 @@ const Data = (props: Eventprops) => {
     };
 
     const chenge2 = () => {
-      setCheck(true);
+      setCheck(0);
     };
 
     const handlesave = () => {
       props.setsavedata(
         props.savedata.map((add, index) =>
-          index === data.position
+          index === checknumber
             ? {
                 event: event,
                 date: date,
                 starttime: starttime,
                 endtime: endtime,
                 eventDetail: eventmore,
-                position: 0,
               }
             : add
         )
       );
     };
 
-    const del = () => {
-      props.setsavedata(
-        props.savedata.filter((same, index) => index !== data.position)
-      );
-    };
+    sliceyear = data.date.substring(0, 4);
+    slicemonth = data.date.substring(7, 5);
+    sliceday = data.date.substring(8);
 
-    return (
-      <div key={data.position} onClick={stopPropagation}>
-        <Popover>
-          <PopoverTrigger>
-            <button className="newevent">{data.event}</button>
-          </PopoverTrigger>
-          <Portal>
-            {check ? (
+    if (
+      Number(sliceyear) === props.year &&
+      Number(slicemonth) === props.month &&
+      Number(sliceday) === Number(props.day)
+    ) {
+      checknumber = index;
+      return (
+        <div onClick={stopPropagation}>
+          <Popover isOpen={isOpen && check === 0} onClose={onClose}>
+            <PopoverTrigger>
+              <button className="newevent" onClick={onOpen}>
+                {data.event}
+              </button>
+            </PopoverTrigger>
+            <Portal>
               <PopoverContent>
                 <PopoverArrow />
                 <PopoverHeader height="40px">
@@ -138,7 +138,12 @@ const Data = (props: Eventprops) => {
                     ></DeleteIcon>
                   </Button>
                 </PopoverHeader>
-                <PopoverCloseButton height="25px" width="30px" left="285px" />
+                <PopoverCloseButton
+                  height="25px"
+                  width="30px"
+                  left="285px"
+                  onClick={onClose}
+                />
                 <PopoverBody>
                   <Stack spacing={4}>
                     <HStack>
@@ -167,7 +172,10 @@ const Data = (props: Eventprops) => {
                   </Stack>
                 </PopoverBody>
               </PopoverContent>
-            ) : (
+            </Portal>
+          </Popover>
+          <Popover isOpen={isOpen && check === 1}>
+            <Portal>
               <PopoverContent>
                 <PopoverArrow />
                 <PopoverHeader>
@@ -182,11 +190,15 @@ const Data = (props: Eventprops) => {
                     left="240px"
                     top="5px"
                     onClick={() => {
-                      handlesave(), chenge2();
+                      handlesave(), onClose(), chenge2();
                     }}
                   />
                 </PopoverHeader>
-                <PopoverCloseButton onClick={chenge2} />
+                <PopoverCloseButton
+                  onClick={() => {
+                    onClose(), chenge2();
+                  }}
+                />
                 <PopoverBody height="210px">
                   <Input
                     id="event"
@@ -237,11 +249,13 @@ const Data = (props: Eventprops) => {
                   />
                 </PopoverBody>
               </PopoverContent>
-            )}
-          </Portal>
-        </Popover>
-      </div>
-    );
+            </Portal>
+          </Popover>
+        </div>
+      );
+    } else {
+      return 0;
+    }
   });
 
   // console.log(props.day);
@@ -249,14 +263,12 @@ const Data = (props: Eventprops) => {
 
   // console.log(new_res.length);
 
-  if (props.savedata === undefined) {
-    return <></>;
-  }
+  const new_res = res.filter((result) => result !== 0);
 
-  if (res.length > 0) {
+  if (new_res.length > 0) {
     return (
       <>
-        {res.map((result, i) => (
+        {new_res.map((result, i) => (
           <div className="event" key={i}>
             {result}
           </div>
@@ -264,6 +276,10 @@ const Data = (props: Eventprops) => {
       </>
     );
   }
+
+  /*if (res[checknumber] !== undefined) {
+    return res[checknumber];
+  }*/
 
   return <></>;
 };

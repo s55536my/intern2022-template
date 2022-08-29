@@ -61,6 +61,7 @@ export type Database = {
   starttime: string;
   endtime: string;
   eventDetail: string;
+  position: number;
 };
 
 const Game = () => {

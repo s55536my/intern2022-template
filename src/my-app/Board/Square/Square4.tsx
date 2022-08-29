@@ -44,6 +44,7 @@ const Square = (props: SquareProps) => {
         starttime: starttime,
         endtime: endtime,
         eventDetail: eventmore,
+        position: 0,
       },
     ]);
     setEvent("");
@@ -65,15 +66,20 @@ const Square = (props: SquareProps) => {
     <Popover isOpen={isOpen}>
       <PopoverTrigger>
         <button className="square" onClick={onOpen}>
-          <div className="today"></div> {props.value}
-          {" 日"}
-          <Data
-            month={props.month}
-            year={props.year}
-            day={props.value}
-            setsavedata={props.setsavedata}
-            savedata={props.savedata}
-          />
+          <div className="today"></div>
+          <div className="hi">
+            {props.value}
+            {" 日"}
+          </div>
+          <ul>
+            <Data
+              month={props.month}
+              year={props.year}
+              day={props.value}
+              setsavedata={props.setsavedata}
+              savedata={props.savedata}
+            />
+          </ul>
         </button>
       </PopoverTrigger>
       <Portal>
