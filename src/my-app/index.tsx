@@ -47,7 +47,6 @@ let endweek = startDayOfWeek;
 let ii = 0;
 let now_day = 0;
 let start_day = 0;
-[];
 let end_day = 0;
 const count = 0;
 
