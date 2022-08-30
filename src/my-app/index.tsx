@@ -66,6 +66,7 @@ export type Database = {
 
 const Game = () => {
   const [state] = useState<GameState>({
+    //各マスの数値の管理
     history: [
       {
         squares: [
@@ -132,6 +133,7 @@ const Game = () => {
 
   let daycount = 0;
 
+  //最初の月の表示を出すとき用
   if (checknumber === 0 && onetime === 0) {
     if (startDayOfWeek === 0) {
       for (let i = 7; i < endDate + 7; i++) {
@@ -280,6 +282,7 @@ const Game = () => {
     }
   }
 
+  //月戻るとき用
   const before = () => {
     //console.log(new_startDayOfWeek)
     const before_month = month - 1;
@@ -1180,6 +1183,7 @@ const Game = () => {
     ii = 0;
   };
 
+  //月進むとき用
   const after = () => {
     new_startDayOfWeek = endweek;
     const after_month = month + 1;

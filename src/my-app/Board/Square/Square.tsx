@@ -35,6 +35,7 @@ const Square = (props: SquareProps) => {
   const [eventmore, setEventmore] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  //入力データ保存場所
   const handlesave = () => {
     props.setsavedata([
       ...props.savedata,
@@ -54,6 +55,7 @@ const Square = (props: SquareProps) => {
     setEventmore("");
   };
 
+  //入力されたデータを初期値に戻す部分
   const del = () => {
     setEvent("");
     setDate("");
@@ -63,7 +65,7 @@ const Square = (props: SquareProps) => {
   };
 
   return (
-    <Popover isOpen={isOpen}>
+    <Popover isOpen={isOpen} placement="right">
       <PopoverTrigger>
         <button className="square" onClick={onOpen}>
           <div className="hi">

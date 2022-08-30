@@ -24,7 +24,9 @@ type BoardProps = {
 };
 
 const Board = (props: BoardProps) => {
+  //7×7の各マスになんの値を入れるかの条件分岐
   const renderSquare = (i: number) => {
+    //曜日の表示用
     if (i < 7) {
       return (
         <Square1
@@ -35,6 +37,7 @@ const Board = (props: BoardProps) => {
         />
       );
     } else if (i >= props.B_start_day && i < props.B_end_day + 1) {
+      //日にち入りの部分の表示(今日のデータの場合)
       if (props.nowmonthposition !== 0 && i === props.nowmonthposition) {
         if (Number(props.squares[i]) < 10) {
           return (
@@ -59,6 +62,7 @@ const Board = (props: BoardProps) => {
             />
           );
         }
+        //日にち入りの部分の表示(今日のデータじゃない場合)
       } else {
         if (Number(props.squares[i]) < 10) {
           return (
@@ -84,6 +88,7 @@ const Board = (props: BoardProps) => {
           );
         }
       }
+      //日にちのデータがない場合(押せないようにするため別に)
     } else {
       return (
         <Square2
@@ -96,6 +101,7 @@ const Board = (props: BoardProps) => {
     }
   };
 
+  //カレンダーの表示
   return (
     <div>
       <div className="board-row1">

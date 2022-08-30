@@ -63,7 +63,7 @@ const Square = (props: SquareProps) => {
   };
 
   return (
-    <Popover isOpen={isOpen}>
+    <Popover isOpen={isOpen} placement="right">
       <PopoverTrigger>
         <button className="square" onClick={onOpen}>
           <div className="today"></div>

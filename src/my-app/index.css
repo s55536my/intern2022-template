@@ -40,14 +40,11 @@ body {
     background: #fff;
     border: 1px solid #999;
     float: left;
-    font-size: 24px;
-    font-weight: bold;
     line-height: 25px;
     height: 85px;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
-    text-align: center;
     width: 140px;
     position: relative;
     text-align: left;
@@ -56,6 +53,8 @@ body {
     font-size:13px;
     left :190px;
     font-weight: 100;
+  	overflow: auto;
+	  overflow-x: hidden;
   }
 
   .name{
@@ -92,6 +91,8 @@ body {
     left :190px;
     color:rgb(59, 204, 156);
     font-weight: 100;
+    overflow: auto;
+    overflow-x: hidden;
   }
 
  .newevent{

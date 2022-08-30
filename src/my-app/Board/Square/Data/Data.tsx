@@ -49,6 +49,7 @@ const Data = (props: Eventprops) => {
 
   let checknum = 0;
 
+  //年、月、日がヒットした場合データを入れた新しい配列の作成
   const a = props.savedata.filter((da, ii) => {
     sliceyear = da.date.substring(0, 4);
     slicemonth = da.date.substring(7, 5);
@@ -65,6 +66,7 @@ const Data = (props: Eventprops) => {
     }
   });
 
+  //filterをもとにヒットしたものをポップオーバー表示に変更する部分
   const res = a.map((data) => {
     const chenge = () => {
       setCheck(false);
@@ -75,10 +77,12 @@ const Data = (props: Eventprops) => {
       setEventmore(data.eventDetail);
     };
 
+    //予定編集か詳細かを判別する用
     const chenge2 = () => {
       setCheck(true);
     };
 
+    //入力データ保存用(予定編集)
     const handlesave = () => {
       props.setsavedata(
         props.savedata.map((add, index) =>
@@ -96,6 +100,7 @@ const Data = (props: Eventprops) => {
       );
     };
 
+    //予定削除用
     const del = () => {
       props.setsavedata(
         props.savedata.filter((same, index) => index !== data.position)
@@ -103,8 +108,9 @@ const Data = (props: Eventprops) => {
     };
 
     return (
+      //「key」を渡す必要あり
       <div key={data.position} onClick={stopPropagation}>
-        <Popover>
+        <Popover onClose={chenge2} placement="right">
           <PopoverTrigger>
             <button className="newevent">{data.event}</button>
           </PopoverTrigger>
@@ -257,6 +263,7 @@ const Data = (props: Eventprops) => {
     return (
       <>
         {res.map((result, i) => (
+          //「key」を渡す必要あり
           <div className="event" key={i}>
             {result}
           </div>
